@@ -4,10 +4,16 @@
 
 package Frontdesk_Interface;
 
+import Connection.ConnectionHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.ref.PhantomReference;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * @author 1
@@ -30,13 +36,13 @@ public class Frontdesk_Mainmenu extends JFrame {
         contentPane.setPreferredSize(new Dimension(800,600));
 
         //---- button1 商品菜单按钮----
-        button1.setText("\u5546\u54c1\u83dc\u5355");
+        button1.setText("\u70B9\u5355");
         contentPane.add(button1);
         button1.setBounds(110, 25, 175, 50);
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-
+                new Frontdesk_GoodsMenu();
             }
         });
 
@@ -48,18 +54,17 @@ public class Frontdesk_Mainmenu extends JFrame {
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                //new Frontdesk_Shoppingcart();
+                new Frontdesk_shoppingCar();
             }
         });
 
         //---- button3 退出菜单按钮----
-        button3.setText("\u9000\u51fa\u83dc\u5355");
+        button3.setText("\u9000\u51fa");
         contentPane.add(button3);
         button3.setBounds(110,330,175,50);
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Frontdesk_Login();
             }
         });
 
@@ -81,7 +86,7 @@ public class Frontdesk_Mainmenu extends JFrame {
         button5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Frontdesk_Login();
+                new Frontdesk_info();
             }
         });
 

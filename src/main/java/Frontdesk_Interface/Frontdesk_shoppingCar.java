@@ -61,30 +61,31 @@ public class Frontdesk_shoppingCar extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //获取当前选中的行
                 int selectedRow = table1.getSelectedRow();
-                //JOptionPane.showMessageDialog(contentPane,"执行到此处！");
-                //通过当前选中的行，获取该行商品的名称
-                Object data2[][]=queryData();
-                String pname =(String)data2[selectedRow][0];
 
-//                if ((selectedRow==-1)==true){
-//                    JOptionPane.showMessageDialog(contentPane,"请选择移除的商品！");
-//                }
-//                else{
-                    //去数据库中将 购物车中该商品给删除掉
+
                     try{
+                        //通过当前选中的行，获取该行商品的名称
+                        Object data2[][]=queryData();
+                        String pname =(String)data2[selectedRow][0];
+
                         Connection conn = ConnectionHandler.getConnection();
                         String sql="delete from shoppingCar where name=?";
                         PreparedStatement pstmt = conn.prepareStatement(sql);
                         pstmt.setString(1,pname);
                         pstmt.executeUpdate();
+
                         JOptionPane.showMessageDialog(contentPane,"移除成功！");
+
+                        //刷新
+                        dispose();
+                        new Frontdesk_shoppingCar();
                     }catch (SQLException r){
                         r.printStackTrace();
+                    } catch (ArrayIndexOutOfBoundsException r){
+                        r.printStackTrace();
+                        JOptionPane.showMessageDialog(contentPane,"请选择需要移除的商品");
                     }
 //                }
-                //刷新
-                dispose();
-                new Frontdesk_shoppingCar();
             }
         });
 
@@ -133,6 +134,13 @@ public class Frontdesk_shoppingCar extends JFrame {
         button3.setText("\u7ed3\u7b97");
         contentPane.add(button3);
         button3.setBounds(new Rectangle(new Point(400, 330), button3.getPreferredSize()));
+        button3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                //跳到结算界面
+                new Frontdesk_settleMent();
+            }
+        });
 
         //---- button5 -返回按钮---
         button5.setText("\u8FD4\u56DE");

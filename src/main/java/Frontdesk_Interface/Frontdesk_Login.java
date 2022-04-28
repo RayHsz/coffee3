@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,8 +29,9 @@ public class Frontdesk_Login extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         label1 = new JLabel();
         label2 = new JLabel();
-        textField1 = new JTextField("test");
-        textField2 = new JTextField("test1234");
+        textField1 = new JTextField();
+        passwordField1 = new JPasswordField();
+        checkBox1 = new JCheckBox();
         button1 = new JButton();
         button2 = new JButton();
         button3 = new JButton();
@@ -49,8 +52,22 @@ public class Frontdesk_Login extends JFrame {
         label2.setBounds(85, 100, 35, 20);
         contentPane.add(textField1);
         textField1.setBounds(130, 70, 115, textField1.getPreferredSize().height);
-        contentPane.add(textField2);
-        textField2.setBounds(130, 100, 115, textField2.getPreferredSize().height);
+        contentPane.add(passwordField1);
+        passwordField1.setBounds(130, 100, 115, passwordField1.getPreferredSize().height);
+
+        //---- 显示密码按钮 ----
+        checkBox1.setText("\u663e\u793a\u5bc6\u7801");
+        contentPane.add(checkBox1);
+        checkBox1.setBounds(new Rectangle(new Point(245, 97), checkBox1.getPreferredSize()));
+        checkBox1.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==ItemEvent.SELECTED){//被选中
+                    passwordField1.setEchoChar((char)0);
+                }else{
+                    passwordField1.setEchoChar('*');
+                }
+            }
+        });
 
         //---- button1 登录按钮----
         button1.setText("\u767b\u5f55");
@@ -58,8 +75,8 @@ public class Frontdesk_Login extends JFrame {
         button1.setBounds(new Rectangle(new Point(130, 140), button1.getPreferredSize()));
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String username = textField1.getText().trim();
-                String password = textField2.getText().trim();
+                username = textField1.getText().trim();
+                password = new String(passwordField1.getPassword());
 
                 //JDBC 查询当前用户用户名是否存在
                 try {
@@ -116,10 +133,15 @@ public class Frontdesk_Login extends JFrame {
     private JLabel label1;
     private JLabel label2;
     private JTextField textField1;
-    private JTextField textField2;
+    private JPasswordField passwordField1;
+    private JCheckBox checkBox1;
     private JButton button1;
     private JButton button2;
     private JButton button3;
+    public  static String username;
+    public  static String password;
+
+
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public static void main(String[] args) {
