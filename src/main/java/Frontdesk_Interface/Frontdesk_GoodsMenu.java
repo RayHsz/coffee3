@@ -52,24 +52,23 @@ public class Frontdesk_GoodsMenu extends JFrame {
         contentPane.add(scrollPane1);
         scrollPane1.setBounds(30, 40, 515, 295);
 
-        //---- button1 -¼ÓÈë¹ºÎï³µ°´Å¥---
+        //---- button1 -åŠ å…¥è´­ç‰©è½¦---
         button1.setText("\u52a0\u5165\u8d2d\u7269\u8f66");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(55, 350), button1.getPreferredSize()));
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //»ñÈ¡µ±Ç°Ñ¡ÖĞµÄĞĞ
+                //è·å–å½“å‰é€‰ä¸­çš„è¡Œ
                int selectedRow = table1.getSelectedRow();
 
                Connection conn = ConnectionHandler.getConnection();
                try{
-                   //Í¨¹ıµ±Ç°Ñ¡ÖĞµÄĞĞ£¬»ñÈ¡¸ÃĞĞÉÌÆ·µÄÃû³Æ
                    Object data2[][]=queryData();
                    String pname =(String)data2[selectedRow][1];
 
-                   /* È»ºóJDBC²éÑ¯µ±Ç° shoppingCar ¹ºÎï³µ±íÖĞÊÇ·ñ´æÔÚ¸ÃÉÌÆ·
-                    * 1.ÒÑ¾­´æÔÚ£ºÔò num=num+1
-                    * 2.»¹Î´´æÔÚ£¬Ôò²éÑ¯ product ÉÌÆ·±í£¬½«¶ÔÓ¦µÄÊı¾İ²åÈë ¹ºÎï³µ±í
+                   /* JDBCæŸ¥è¯¢å½“å‰ shoppingCar ä¸­æœ‰æ²¡æœ‰è¯¥å•†å“
+                    * 1.æœ‰ï¼Œåˆ™ num=num+1
+                    * 2.æ²¡æœ‰ï¼Œåˆ™æŸ¥è¯¢ product è¡¨ï¼ŒæŠŠå¯¹åº”çš„å•†å“ä¿¡æ¯æŸ¥è¯¢å‡ºæ¥æ”¾åˆ°è´­ç‰©è½¦
                     */
 
                    String sql = "select name from shoppingCar where name=?";
@@ -79,16 +78,16 @@ public class Frontdesk_GoodsMenu extends JFrame {
 
                    ResultSet rs = pstmt.executeQuery();
 
-                   if(rs.next()){ //Èô¹ºÎï³µÖĞÒÑ¾­´æÔÚ¸ÃÉÌÆ·,Ôò num=num+1
+                   if(rs.next()){
                        String sql2 = "update shoppingCar set num=num+1 where name=?";
                        PreparedStatement pstmt2 = conn.prepareStatement(sql2);
                        pstmt2.setString(1,pname);
                        pstmt2.executeUpdate();
-                       JOptionPane.showMessageDialog(contentPane,"¼ÓÈë¹ºÎï³µ³É¹¦,ÊıÁ¿¼ÓÒ»£¡");
+                       JOptionPane.showMessageDialog(contentPane,"æ•°é‡åŠ 1");
                    }
-                   //Èô¹ºÎï³µÎ´´æÔÚ¸ÃÉÌÆ·
+
                    else{
-                       float price=0;
+                      float price=0;
                       String sql3 = "select * from product where name=?";
                       String sql4 = "insert into shoppingCar(name,num,price) " +
                                     "values(?,?,?)";
@@ -104,19 +103,19 @@ public class Frontdesk_GoodsMenu extends JFrame {
                       pstmt4.setInt(2,1);
                       pstmt4.setFloat(3,price);
                       pstmt4.executeUpdate();
-                      JOptionPane.showMessageDialog(contentPane,"¼ÓÈë¹ºÎï³µ³É¹¦£¡");
+                      JOptionPane.showMessageDialog(contentPane,"åŠ å…¥è´­ç‰©è½¦æˆåŠŸï¼");
                    }
                }catch (SQLException r){
                    r.printStackTrace();
                }catch (ArrayIndexOutOfBoundsException m){
-                   JOptionPane.showMessageDialog(contentPane,"ÇëÑ¡ÔñĞèÒª¼ÓÈë¹ºÎï³µµÄÉÌÆ·£¡");
+                   JOptionPane.showMessageDialog(contentPane,"è¯·é€‰æ‹©éœ€è¦åŠ å…¥è´­ç‰©è½¦çš„å•†å“ï¼");
                    m.printStackTrace();
                }
 
             }
         });
 
-        //---- button2 -¹ºÎï³µ°´Å¥---
+        //---- button2 -è´­ç‰©è½¦---
         button2.setText("\u8d2d\u7269\u8f66");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(460, 355), button2.getPreferredSize()));
@@ -127,7 +126,7 @@ public class Frontdesk_GoodsMenu extends JFrame {
             }
         });
 
-        //---- button3 -·µ»Ø°´Å¥---
+        //---- button3 -è¿”å›---
         button3.setText("\u8FD4\u56DE");
         contentPane.add(button3);
         button3.setBounds(new Rectangle(new Point(0, 0), button2.getPreferredSize()));
@@ -150,16 +149,16 @@ public class Frontdesk_GoodsMenu extends JFrame {
         java.util.List<Product> list = new ArrayList<Product>();
         Connection conn = null;
 
-        Statement stmt = null;//SQLÓï¾ä¶ÔÏó£¬Æ´SQL
+        Statement stmt = null;
         String sql = "SELECT * FROM product";
-        //System.out.println("¼´½«Ö´ĞĞµÄsql£º" + sql);
+
         ResultSet rs = null;
         try {
             conn = ConnectionHandler.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                //Ã¿Ñ­»·Ò»´Î¾ÍÊÇÒ»¸ö¶ÔÏó£¬°ÑÕâ¸ö¶ÔÏó·ÅÈëÈİÆ÷£¨List£¨ÓĞĞò¿ÉÖØ¸´£©¡¢Set£¨ÎŞĞò²»¿ÉÖØ¸´£©¡¢Map£¨key¡¢value½á¹¹£©
+
                 Product product = new Product();
                 product.setId(rs.getInt(1));
                 product.setName(rs.getString(2));
@@ -171,18 +170,18 @@ public class Frontdesk_GoodsMenu extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            //ÊÍ·Å×ÊÔ´£ºÊı¾İ¿âÁ¬½ÓºÜ°º¹ó
+
             try {
                 rs.close();
                 stmt.close();
-                conn.close();//¹ØÁ¬½Ó
+                conn.close();//??????
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
 
         }
         data = new Object[list.size()][head.length];
-        //°Ñ¼¯ºÏÀïµÄÊı¾İ·ÅÈëObejctÕâ¸ö¶şÎ¬Êı×é
+
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < head.length; j++) {
                 data[i][0] = list.get(i).getId();
@@ -200,7 +199,7 @@ public class Frontdesk_GoodsMenu extends JFrame {
     private JButton button1;
     private JButton button2;
     private JButton button3;
-    private String head[] = {"id", "ÉÌÆ·Ãû³Æ", "µ¥¼Û", "ÉÌÆ·Àà±ğ"};
+    private String head[] = {"id", "å•†å“åç§°", "å•ä»·", "å•†å“åˆ†ç±»"};
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public static void main(String[] args) {

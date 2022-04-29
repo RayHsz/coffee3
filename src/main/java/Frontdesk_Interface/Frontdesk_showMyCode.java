@@ -4,9 +4,17 @@
 
 package Frontdesk_Interface;
 
+import javafx.scene.image.Image;
+import pay.WXPay;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -17,29 +25,39 @@ public class Frontdesk_showMyCode extends JFrame {
         initComponents();
     }
 
-    private void initComponents() {
+    private void initComponents()  {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         button1 = new JButton();
         label1 = new JLabel();
+        label2 = new JLabel();
+
+        img = new ImageIcon("src\\main\\java\\img\\new.jpg");// åˆ›å»ºå›¾ç‰‡å¯¹è±¡
+        label2.setIcon(img);
 
         //======== this ========
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
 
-        //---- button1 -·µ»Ø°´Å¥---
+
+        //---- label2 ----
+        label2.setText("text");
+        contentPane.add(label2);
+        label2.setBounds(235, 100, 300, 300);
+
+        //---- button1 -è¿”å›æŒ‰é’®---
         button1.setText("\u8fd4\u56de");
         contentPane.add(button1);
         button1.setBounds(0, 0, 65, button1.getPreferredSize().height);
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                //Ìø×ª»ØÑ¡Ôñ½áËã·½Ê½½çÃæ
+                //è·³è½¬å›é€‰æ‹©ç»“ç®—æ–¹å¼ç•Œé¢
                 new Frontdesk_settleMent();
             }
         });
 
-        //---- label1 -ÇëÉ¨ÂëÖ§¸¶---
+        //---- label1 -è¯·æ‰«ç æ”¯ä»˜---
         label1.setText("\u8bf7\u626b\u7801\u652f\u4ed8");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(355, 10), label1.getPreferredSize()));
@@ -55,6 +73,10 @@ public class Frontdesk_showMyCode extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JButton button1;
     private JLabel label1;
+    private JLabel label2;
+
+    private ImageIcon img ;
+
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public static void main(String[] args) {

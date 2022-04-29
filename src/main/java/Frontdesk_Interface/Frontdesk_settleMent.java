@@ -4,6 +4,8 @@
 
 package Frontdesk_Interface;
 
+import pay.WXPay;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +38,7 @@ public class Frontdesk_settleMent extends JFrame {
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(110, 30), label1.getPreferredSize()));
 
-        //---- button1 -·µ»Ø°´Å¥---
+        //---- button1 -è¿”å›æŒ‰é’®---
         button1.setText("\u8fd4\u56de");
         contentPane.add(button1);
         button1.setBounds(0, 0, 65, button1.getPreferredSize().height);
@@ -47,15 +49,16 @@ public class Frontdesk_settleMent extends JFrame {
             }
         });
 
-        //---- button2 -"ÄãÉ¨ÎÒ"°´Å¥---
+        //---- button2 -"ä½ æ‰«æˆ‘"æŒ‰é’®---
         button2.setText("\u4f60\u626b\u6211");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(115, 60), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                //³öÊ¾ÉÌ¼Ò¶şÎ¬Âë
+                //æ ¹æ®è®¢å•ç”ŸæˆäºŒç»´ç åï¼Œå‡ºç¤ºå•†å®¶äºŒç»´ç 
                 new Frontdesk_showMyCode();
+
             }
         });
 
@@ -65,14 +68,14 @@ public class Frontdesk_settleMent extends JFrame {
         contentPane.add(label2);
         label2.setBounds(new Rectangle(new Point(190, 65), label2.getPreferredSize()));
 
-        //---- button3 -"ÎÒÉ¨Äã"°´Å¥---
+        //---- button3 -"æˆ‘æ‰«ä½ "æŒ‰é’®---
         button3.setText("\u6211\u626b\u4f60");
         contentPane.add(button3);
         button3.setBounds(new Rectangle(new Point(115, 100), button3.getPreferredSize()));
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //´Ë´¦ÄÃÆğÉ¨ÂëÇ¹»ñÈ¡¿Í»§ÊÕ¿îÂë
-                JOptionPane.showMessageDialog(contentPane,"É¨ÂëÇ¹»ñÈ¡¿Í»§ÊÕ¿îÂë£¡(»¹Î´ÊµÏÖ)");
+                //æ­¤å¤„æ‹¿èµ·æ‰«ç æªè·å–å®¢æˆ·æ”¶æ¬¾ç 
+                JOptionPane.showMessageDialog(contentPane,"æ‰«ç æªè·å–å®¢æˆ·æ”¶æ¬¾ç ï¼(è¿˜æœªå®ç°)");
             }
         });
 

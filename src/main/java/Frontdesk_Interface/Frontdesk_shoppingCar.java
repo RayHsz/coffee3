@@ -9,6 +9,7 @@ import bean.Product;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -16,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import Connection.*;
 import bean.ShoppingCar;
 import jdk.nashorn.internal.scripts.JO;
+import pay.WXPay;
 
 /**
  * @author 1
@@ -53,18 +55,18 @@ public class Frontdesk_shoppingCar extends JFrame {
         contentPane.add(scrollPane1);
         scrollPane1.setBounds(40, 45, scrollPane1.getPreferredSize().width, 275);
 
-        //---- button1 -ÒÆ³ö¹ºÎï³µ---
+        //---- button1 -ç§»å‡ºè´­ç‰©è½¦---
         button1.setText("\u79fb\u51fa\u8d2d\u7269\u8f66");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(55, 330), button1.getPreferredSize()));
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //»ñÈ¡µ±Ç°Ñ¡ÖĞµÄĞĞ
+                //è·å–å½“å‰é€‰ä¸­çš„è¡Œ
                 int selectedRow = table1.getSelectedRow();
 
 
                     try{
-                        //Í¨¹ıµ±Ç°Ñ¡ÖĞµÄĞĞ£¬»ñÈ¡¸ÃĞĞÉÌÆ·µÄÃû³Æ
+                        //é€šè¿‡å½“å‰é€‰ä¸­çš„è¡Œï¼Œè·å–è¯¥è¡Œå•†å“çš„åç§°
                         Object data2[][]=queryData();
                         String pname =(String)data2[selectedRow][0];
 
@@ -74,29 +76,29 @@ public class Frontdesk_shoppingCar extends JFrame {
                         pstmt.setString(1,pname);
                         pstmt.executeUpdate();
 
-                        JOptionPane.showMessageDialog(contentPane,"ÒÆ³ı³É¹¦£¡");
+                        JOptionPane.showMessageDialog(contentPane,"ç§»é™¤æˆåŠŸï¼");
 
-                        //Ë¢ĞÂ
+                        //åˆ·æ–°
                         dispose();
                         new Frontdesk_shoppingCar();
                     }catch (SQLException r){
                         r.printStackTrace();
                     } catch (ArrayIndexOutOfBoundsException r){
                         r.printStackTrace();
-                        JOptionPane.showMessageDialog(contentPane,"ÇëÑ¡ÔñĞèÒªÒÆ³ıµÄÉÌÆ·");
+                        JOptionPane.showMessageDialog(contentPane,"è¯·é€‰æ‹©éœ€è¦ç§»é™¤çš„å•†å“");
                     }
 //                }
             }
         });
 
-        //---- button2 -Çå¿Õ¹ºÎï³µ---
+        //---- button2 -æ¸…ç©ºè´­ç‰©è½¦---
         button2.setText("\u6e05\u7a7a\u8d2d\u7269\u8f66");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(171, 330), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(contentPane,"È·¶¨ÒªÇå¿Õ¹ºÎï³µÂğ£¿");
-                //È·¶¨,²¢ÇÒµ±Ç°Ö»ÄÜÈ·¶¨£¬»¹Ã»ÊµÏÖÈ¡Ïû
+                JOptionPane.showMessageDialog(contentPane,"ç¡®å®šè¦æ¸…ç©ºè´­ç‰©è½¦å—ï¼Ÿ");
+                //ç¡®å®š,å¹¶ä¸”å½“å‰åªèƒ½ç¡®å®šï¼Œè¿˜æ²¡å®ç°å–æ¶ˆ
                 try{
                     Connection conn = ConnectionHandler.getConnection();
                     Statement stmt = conn.createStatement();
@@ -110,39 +112,43 @@ public class Frontdesk_shoppingCar extends JFrame {
             }
         });
 
-        //---- label1 -×Ü¼Û£ºxx £¤---
+        //---- label1 -æ€»ä»·ï¼šxx ï¿¥---
         label1.setText("\u603b\u4ef7\uff1a\uffe5");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(286, 335),new Dimension(100,20)));
         try{
-            float sumPrice=0;
+
             Connection conn = ConnectionHandler.getConnection();
-            String sql = "select sum(price*num) sumPrice from shoppingCar";
+            String sql = "select cast(sum(price*num) as decimal(10,2)) sumPrice from shoppingCar";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs=pstmt.executeQuery();
             while(rs.next()){
                    sumPrice = rs.getFloat("sumPrice");
             }
             String key = ""+sumPrice;
-            label1.setText("\u603b\u4ef7"+key+"\uffe5");
+            label1.setText("\u603b\u4ef7"+sumPrice+"\uffe5");
 
         }catch(SQLException e){
             e.printStackTrace();
         }
 
-        //---- button3 -½áËã---
+        //---- button3 -ç»“ç®—---
         button3.setText("\u7ed3\u7b97");
         contentPane.add(button3);
         button3.setBounds(new Rectangle(new Point(400, 330), button3.getPreferredSize()));
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                //åœ¨imgåŒ…ä¸‹ç”ŸæˆäºŒç»´ç 
+                WXPay.unifiedOrder();
+
                 dispose();
-                //Ìøµ½½áËã½çÃæ
+                //è·³åˆ°ç»“ç®—ç•Œé¢
                 new Frontdesk_settleMent();
             }
         });
 
-        //---- button5 -·µ»Ø°´Å¥---
+        //---- button5 -è¿”å›æŒ‰é’®---
         button5.setText("\u8FD4\u56DE");
         contentPane.add(button5);
         button5.setBounds(new Rectangle(new Point(0, 0), button5.getPreferredSize()));
@@ -165,16 +171,16 @@ public class Frontdesk_shoppingCar extends JFrame {
         java.util.List<ShoppingCar> list = new ArrayList<ShoppingCar>();
         Connection conn = null;
 
-        Statement stmt = null;//SQLÓï¾ä¶ÔÏó£¬Æ´SQL
+        Statement stmt = null;//SQLè¯­å¥å¯¹è±¡ï¼Œæ‹¼SQL
         String sql = "SELECT * FROM shoppingCar";
-        //System.out.println("¼´½«Ö´ĞĞµÄsql£º" + sql);
+        //System.out.println("å³å°†æ‰§è¡Œçš„sqlï¼š" + sql);
         ResultSet rs = null;
         try {
             conn = ConnectionHandler.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                //Ã¿Ñ­»·Ò»´Î¾ÍÊÇÒ»¸ö¶ÔÏó£¬°ÑÕâ¸ö¶ÔÏó·ÅÈëÈİÆ÷£¨List£¨ÓĞĞò¿ÉÖØ¸´£©¡¢Set£¨ÎŞĞò²»¿ÉÖØ¸´£©¡¢Map£¨key¡¢value½á¹¹£©
+                //æ¯å¾ªç¯ä¸€æ¬¡å°±æ˜¯ä¸€ä¸ªå¯¹è±¡ï¼ŒæŠŠè¿™ä¸ªå¯¹è±¡æ”¾å…¥å®¹å™¨ï¼ˆListï¼ˆæœ‰åºå¯é‡å¤ï¼‰ã€Setï¼ˆæ— åºä¸å¯é‡å¤ï¼‰ã€Mapï¼ˆkeyã€valueç»“æ„ï¼‰
                 ShoppingCar shoppingCar = new ShoppingCar();
                 shoppingCar.setName(rs.getString("name"));
                 shoppingCar.setNum(rs.getInt("num"));
@@ -186,18 +192,18 @@ public class Frontdesk_shoppingCar extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            //ÊÍ·Å×ÊÔ´£ºÊı¾İ¿âÁ¬½ÓºÜ°º¹ó
+            //é‡Šæ”¾èµ„æºï¼šæ•°æ®åº“è¿æ¥å¾ˆæ˜‚è´µ
             try {
                 rs.close();
                 stmt.close();
-                conn.close();//¹ØÁ¬½Ó
+                conn.close();//å…³è¿æ¥
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
 
         }
         data = new Object[list.size()][head.length];
-        //°Ñ¼¯ºÏÀïµÄÊı¾İ·ÅÈëObejctÕâ¸ö¶şÎ¬Êı×é
+        //æŠŠé›†åˆé‡Œçš„æ•°æ®æ”¾å…¥Obejctè¿™ä¸ªäºŒç»´æ•°ç»„
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < head.length; j++) {
                 data[i][0] = list.get(i).getName();
@@ -218,7 +224,9 @@ public class Frontdesk_shoppingCar extends JFrame {
     private JButton button3;
     private JButton button5;
 
-    private String head[] = {"ÉÌÆ·Ãû³Æ", "ÊıÁ¿", "µ¥¼Û"};
+    public static float sumPrice=0;
+
+    private String head[] = {"å•†å“åç§°", "æ•°é‡", "å•ä»·"};
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public static void main(String[] args) {

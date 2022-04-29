@@ -1,5 +1,7 @@
 package pay;
 
+import Frontdesk_Interface.Frontdesk_info;
+import Frontdesk_Interface.Frontdesk_shoppingCar;
 import sdk.WXPayUtil;
 import util.DateUtil;
 import com.google.zxing.BarcodeFormat;
@@ -106,9 +108,12 @@ public class WXPay {
         }
         String spbill_create_ip = addr.getHostAddress();
         //支付金额，需要转成字符串类型，否则后面的签名会失败
-        int total_fee = 1800;//100分：1块钱
+        float a = Frontdesk_shoppingCar.sumPrice*100;
+        int total_fee =(int)a;//100分：1块钱
+        System.out.println("生成二维码，当前传入的金额为："+total_fee);
+
         //商品描述
-        String body = "金桔柠檬";
+        String body = "买咖啡钱！";
         //商户订单号
         String out_trade_no = WXPayUtil.generateNonceStr();
         //统一下单接口参数
@@ -139,10 +144,9 @@ public class WXPay {
     public static void createQRCode(Map<String, String> map) throws Exception {
 
         //获取当前项目的路径
-        String path = System.getProperty("user.dir");
+        String path = System.getProperty("user.dir")+"/src/main/java/img/new.jpg";
         //由于Windows系统的问题，需要将获取到的路径中的 \ 转换为 \\
         //很奇怪，因为本身 \ 是敏感字符，需要对其进行转义，一个反斜杠 需要写 四个反斜杠 才能对其进行转义
-        path = path+"\\src\\main\\java\\img\\new.jpg";
         path = path.replaceAll("\\\\","\\\\\\\\");
         System.out.println("path="+path);
 
