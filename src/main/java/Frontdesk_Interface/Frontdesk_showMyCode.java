@@ -28,13 +28,16 @@ public class Frontdesk_showMyCode extends JFrame {
     private void initComponents()  {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         button1 = new JButton();
+        button2 = new JButton();
         label1 = new JLabel();
         label2 = new JLabel();
 
+        System.out.println("当前路径="+this.getClass().getResource("/"));
         img = new ImageIcon("src\\main\\java\\img\\new.jpg");// 创建图片对象
         label2.setIcon(img);
 
         //======== this ========
+        //setIconImage(new ImageIcon(getClass().getResource("src/main/java/img/new.jpg")).getImage());
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
@@ -57,6 +60,11 @@ public class Frontdesk_showMyCode extends JFrame {
             }
         });
 
+        //---- button2 -结算完成按钮---
+        button2.setText("\u7ED3\u7B97\u5B8C\u6210");
+        contentPane.add(button2);
+        button2.setBounds(700, 550, 100, 50);
+
         //---- label1 -请扫码支付---
         label1.setText("\u8bf7\u626b\u7801\u652f\u4ed8");
         contentPane.add(label1);
@@ -72,10 +80,10 @@ public class Frontdesk_showMyCode extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JButton button1;
+    private JButton button2;
     private JLabel label1;
     private JLabel label2;
-
-    private ImageIcon img ;
+    private ImageIcon img;
 
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
