@@ -56,7 +56,7 @@ public class Frontdesk_alterPsw1 extends JFrame {
         checkBox1.setBounds(new Rectangle(new Point(180, 67), checkBox1.getPreferredSize()));
         checkBox1.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-                if(e.getStateChange()==ItemEvent.SELECTED){//±»Ñ¡ÖĞ
+                if(e.getStateChange()==ItemEvent.SELECTED){//è¢«é€‰ä¸­
                     passwordField1.setEchoChar((char)0);
                 }else{
                     passwordField1.setEchoChar('*');
@@ -72,7 +72,7 @@ public class Frontdesk_alterPsw1 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String password1 = passwordField1.getText().trim();
                 if(password1.equals("")){
-                    JOptionPane.showMessageDialog(contentPane, "ÊäÈëµÄÃÜÂë²»ÄÜÎª¿Õ£¡");
+                    JOptionPane.showMessageDialog(contentPane, "è¾“å…¥çš„å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
                 }
                 else{
                     if (password1.equals(Frontdesk_Login.password)){
@@ -80,13 +80,13 @@ public class Frontdesk_alterPsw1 extends JFrame {
                         new Frontdesk_alterPsw2();
                     }
                     else{
-                        JOptionPane.showMessageDialog(contentPane,"ÃÜÂë´íÎó£¡");
+                        JOptionPane.showMessageDialog(contentPane,"å¯†ç é”™è¯¯ï¼");
                     }
                 }
             }
         });
 
-        //---- button2 -·µ»Ø---
+        //---- button2 -è¿”å›---
         button2.setText("\u8FD4\u56DE");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(0, 0), button2.getPreferredSize()));

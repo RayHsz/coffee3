@@ -41,6 +41,7 @@ public class Frontdesk_shoppingCar extends JFrame {
         final Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
+        setTitle("购物车");
         final DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -79,8 +80,9 @@ public class Frontdesk_shoppingCar extends JFrame {
                         JOptionPane.showMessageDialog(contentPane,"移除成功！");
 
                         //刷新
-                        dispose();
                         new Frontdesk_shoppingCar();
+                        dispose();
+
                     }catch (SQLException r){
                         r.printStackTrace();
                     } catch (ArrayIndexOutOfBoundsException r){
@@ -97,7 +99,7 @@ public class Frontdesk_shoppingCar extends JFrame {
         button2.setBounds(new Rectangle(new Point(171, 330), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(contentPane,"确定要清空购物车吗？");
+                JOptionPane.showMessageDialog(contentPane,"清空完毕！");
                 //确定,并且当前只能确定，还没实现取消
                 try{
                     Connection conn = ConnectionHandler.getConnection();
@@ -107,8 +109,10 @@ public class Frontdesk_shoppingCar extends JFrame {
                 }catch (SQLException r){
                     r.printStackTrace();
                 }
-                dispose();
+
                 new Frontdesk_shoppingCar();
+                dispose();
+
             }
         });
 
@@ -138,13 +142,34 @@ public class Frontdesk_shoppingCar extends JFrame {
         button3.setBounds(new Rectangle(new Point(400, 330), button3.getPreferredSize()));
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                /*
+                 * 首先查看当前购物车中有没有商品
+                 * 1.有则跳转到结算界面
+                 * 2.没有则提示当前购物车没有需要结算的商品
+                 */
+                Connection conn=null;
+                try{
+                    conn = ConnectionHandler.getConnection();
+                    Statement stmt = conn.createStatement();
+                    String sql = "select * from shoppingCar";
+                    ResultSet rs = stmt.executeQuery(sql);
+                    if (rs.next()){
+                        dispose();
+                        //跳到结算界面
+                        new Frontdesk_settleMent();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(contentPane,"当前购物车没有需要结算的商品！");
+                    }
+                    conn.close();
+                    stmt.close();
 
-                //在img包下生成二维码
-                WXPay.unifiedOrder();
+                }catch(SQLException r){
+                    r.printStackTrace();
+                }
 
-                dispose();
-                //跳到结算界面
-                new Frontdesk_settleMent();
+
+
             }
         });
 

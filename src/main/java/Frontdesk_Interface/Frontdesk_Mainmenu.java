@@ -34,15 +34,16 @@ public class Frontdesk_Mainmenu extends JFrame {
         final Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
+        setTitle("主界面");
 
-        //---- button1 商品菜单按钮----
+        //---- button1 点单按钮----
         button1.setText("\u70B9\u5355");
         contentPane.add(button1);
         button1.setBounds(110, 25, 175, 50);
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new Frontdesk_GoodsMenu();
+                dispose();
             }
         });
 
@@ -53,8 +54,8 @@ public class Frontdesk_Mainmenu extends JFrame {
         button2.setBounds(110, 125, 175, 50);
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new Frontdesk_shoppingCar();
+                dispose();
             }
         });
 
@@ -74,8 +75,8 @@ public class Frontdesk_Mainmenu extends JFrame {
         button4.setBounds(new Rectangle(new Point(0, 0), button2.getPreferredSize()));
         button4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new Frontdesk_Login();
+                dispose();
             }
         });
 
@@ -85,8 +86,8 @@ public class Frontdesk_Mainmenu extends JFrame {
         button5.setBounds(110, 225, 175, 50);
         button5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new Frontdesk_info();
+                dispose();
             }
         });
 

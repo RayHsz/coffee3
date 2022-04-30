@@ -32,6 +32,7 @@ public class Frontdesk_settleMent extends JFrame {
         final Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
+        setTitle("支付方式");
 
         //---- label1 ----
         label1.setText("\u8bf7\u9009\u62e9\u7ed3\u7b97\u65b9\u5f0f");
@@ -55,6 +56,8 @@ public class Frontdesk_settleMent extends JFrame {
         button2.setBounds(new Rectangle(new Point(115, 60), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //在img包下生成二维码
+                WXPay.unifiedOrder();
                 dispose();
                 //根据订单生成二维码后，出示商家二维码
                 new Frontdesk_showMyCode();

@@ -37,6 +37,7 @@ public class Frontdesk_GoodsMenu extends JFrame {
         final Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
+        setTitle("点单界面");
 
         final DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
             public boolean isCellEditable(int row, int column) {
@@ -121,8 +122,8 @@ public class Frontdesk_GoodsMenu extends JFrame {
         button2.setBounds(new Rectangle(new Point(460, 355), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new Frontdesk_shoppingCar();
+                dispose();
             }
         });
 

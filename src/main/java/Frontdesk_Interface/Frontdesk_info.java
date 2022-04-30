@@ -34,8 +34,9 @@ public class Frontdesk_info extends JFrame {
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
+        setTitle("æˆ‘çš„ä¿¡æ¯");
 
-        //---- button1 -·µ»Ø°´Å¥---
+        //---- button1 -è¿”å›æŒ‰é’®---
         button1.setText("\u8fd4\u56de");
         contentPane.add(button1);
         button1.setBounds(0, 0, 60, button1.getPreferredSize().height);
@@ -46,7 +47,7 @@ public class Frontdesk_info extends JFrame {
             }
         });
 
-        //---- label1 -ĞÕÃû---
+        //---- label1 -å§“å---
         label1.setText("\u59D3\u540D\uFF1A");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(65, 60), label1.getPreferredSize()));
@@ -79,7 +80,7 @@ public class Frontdesk_info extends JFrame {
 
 
 
-        //---- label3 -µÇÂ½ÕË»§Ãû---
+        //---- label3 -ç™»é™†è´¦æˆ·å---
         label3.setText("\u767b\u9646\u8D26\u53F7\uFF1A");
         contentPane.add(label3);
         label3.setBounds(new Rectangle(new Point(40, 90), label3.getPreferredSize()));
@@ -90,7 +91,7 @@ public class Frontdesk_info extends JFrame {
         label4.setBounds(new Rectangle(new Point(110, 90), label4.getPreferredSize()));
         label4.setText(userAccount);
 
-        //---- button2 -ĞŞ¸ÄÃÜÂë---
+        //---- button2 -ä¿®æ”¹å¯†ç ---
         button2.setText("\u4fee\u6539\u5bc6\u7801");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(70, 145), button2.getPreferredSize()));
