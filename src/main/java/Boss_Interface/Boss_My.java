@@ -9,6 +9,8 @@ import Connection.ConnectionHandler1;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,6 +37,9 @@ public class Boss_My extends JFrame {
         label4 = new JLabel();
         button1 = new JButton();
         button2 = new JButton();
+        checkBox1 = new JCheckBox();
+        checkBox2 = new JCheckBox();
+        checkBox3 = new JCheckBox();
 
         //======== this ========
         setTitle("\u4fee\u6539\u5bc6\u7801");
@@ -42,35 +47,77 @@ public class Boss_My extends JFrame {
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
 
-        //---- label1 ----
+        //---- label1 -ç”¨æˆ·å---
         label1.setText("\u7528\u6237\u540d");
         contentPane.add(label1);
         label1.setBounds(165, 40, 45, 25);
         contentPane.add(textField1);
-        textField1.setBounds(225, 40, 140, 35);
+        textField1.setBounds(225, 40, 140, 30);
 
-        //---- label2 ----
+        //---- label2 -å¯†ç ---
         label2.setText("\u5bc6\u7801");
         contentPane.add(label2);
-        label2.setBounds(165, 85, 40, 25);
+        label2.setBounds(165, 90, 40, 25);
 
-        //---- label3 ----
+        //---- label3 -æ–°å¯†ç ---
         label3.setText("\u65b0\u5bc6\u7801");
         contentPane.add(label3);
-        label3.setBounds(160, 150, 55, 25);
-        contentPane.add(passwordField1);
-        passwordField1.setBounds(225, 85, 140, 40);
-        contentPane.add(passwordField2);
-        passwordField2.setBounds(225, 140, 135, 35);
-        contentPane.add(passwordField3);
-        passwordField3.setBounds(225, 200, 140, 30);
+        label3.setBounds(160, 140, 55, 25);
 
-        //---- label4 ----
+        contentPane.add(passwordField1);
+        passwordField1.setBounds(225, 90, 140, 30);
+        //---- æ˜¾ç¤ºå¯†ç æŒ‰é’® ----
+        checkBox1.setText("\u663e\u793a\u5bc6\u7801");
+        contentPane.add(checkBox1);
+        checkBox1.setBounds(new Rectangle(new Point(365, 93), checkBox1.getPreferredSize()));
+        checkBox1.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==ItemEvent.SELECTED){//è¢«é€‰ä¸­
+                    passwordField1.setEchoChar((char)0);
+                }else{
+                    passwordField1.setEchoChar('*');
+                }
+            }
+        });
+
+        contentPane.add(passwordField2);
+        passwordField2.setBounds(225, 140, 140, 30);
+        //---- æ˜¾ç¤ºå¯†ç æŒ‰é’® ----
+        checkBox2.setText("\u663e\u793a\u5bc6\u7801");
+        contentPane.add(checkBox2);
+        checkBox2.setBounds(new Rectangle(new Point(365, 143), checkBox2.getPreferredSize()));
+        checkBox2.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==ItemEvent.SELECTED){//è¢«é€‰ä¸­
+                    passwordField2.setEchoChar((char)0);
+                }else{
+                    passwordField2.setEchoChar('*');
+                }
+            }
+        });
+
+        contentPane.add(passwordField3);
+        passwordField3.setBounds(225, 190, 140, 30);
+        //---- æ˜¾ç¤ºå¯†ç æŒ‰é’® ----
+        checkBox3.setText("\u663e\u793a\u5bc6\u7801");
+        contentPane.add(checkBox3);
+        checkBox3.setBounds(new Rectangle(new Point(365, 193), checkBox3.getPreferredSize()));
+        checkBox3.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==ItemEvent.SELECTED){//è¢«é€‰ä¸­
+                    passwordField3.setEchoChar((char)0);
+                }else{
+                    passwordField3.setEchoChar('*');
+                }
+            }
+        });
+
+        //---- label4 -ç¡®è®¤å¯†ç ---
         label4.setText("\u786e\u8ba4\u5bc6\u7801");
         contentPane.add(label4);
-        label4.setBounds(155, 200, 70, 25);
+        label4.setBounds(155, 190, 70, 25);
 
-        //---- button1    ·µ»Ø----
+        //---- button1    è¿”å›----
         button1.setText("\u8fd4\u56de");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(10, 10), button1.getPreferredSize()));
@@ -81,10 +128,10 @@ public class Boss_My extends JFrame {
             }
         });
 
-        //---- button2     È·ÈÏĞŞ¸Ä----
+        //---- button2     ç¡®è®¤ä¿®æ”¹----
         button2.setText("\u786e\u8ba4\u4fee\u6539");
         contentPane.add(button2);
-        button2.setBounds(new Rectangle(new Point(195, 255), button2.getPreferredSize()));
+        button2.setBounds(new Rectangle(new Point(250, 255), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String userName = textField1.getText().trim();
@@ -93,11 +140,11 @@ public class Boss_My extends JFrame {
                 String confPassWord = passwordField3.getText().trim();
 
                 if (userName.equals("")||passWord.equals("")||newPassWord.equals("")||confPassWord.equals("")){
-                    JOptionPane.showMessageDialog(contentPane, "Çë²¹È«ĞÅÏ¢£¡");
+                    JOptionPane.showMessageDialog(contentPane, "è¯·è¡¥å…¨ä¿¡æ¯ï¼");
                     return;
                 }
                 if (!newPassWord.equals(confPassWord)){
-                    JOptionPane.showMessageDialog(contentPane, "Ç°ºóÁ½´ÎµÄÃÜÂë²»Ò»ÖÂ£¡");
+                    JOptionPane.showMessageDialog(contentPane, "å‰åä¸¤æ¬¡çš„å¯†ç ä¸ä¸€è‡´ï¼");
                     return;
                 }
                 Connection conn = ConnectionHandler1.getConnection();
@@ -108,7 +155,7 @@ public class Boss_My extends JFrame {
                     pstmt.setString(2,passWord);
 
                     ResultSet rs = pstmt.executeQuery();
-                    //ÓĞ½á¹û¼¯£¬ ËµÃ÷ÕËºÅÃÜÂëÕıÈ·
+                    //æœ‰ç»“æœé›†ï¼Œ è¯´æ˜è´¦å·å¯†ç æ­£ç¡®
                     if (rs.next()){
                         int id = rs.getInt(1);
                         String sql2 = "UPDATE boss SET password = ? WHERE ID = ?";
@@ -116,13 +163,13 @@ public class Boss_My extends JFrame {
                         pstmt.setInt(2,id);
                         pstmt.setString(1,newPassWord);
                         pstmt.execute();
-                        JOptionPane.showMessageDialog(contentPane, "ÃÜÂëĞŞ¸Ä³É¹¦£¡");
+                        JOptionPane.showMessageDialog(contentPane, "å¯†ç ä¿®æ”¹æˆåŠŸï¼");
                         ConnectionHandler1.closeConnection();
                         pstmt.close();
                         dispose();
                         new Boss_Main();
                     }else {
-                        JOptionPane.showMessageDialog(contentPane, "ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+                        JOptionPane.showMessageDialog(contentPane, "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
                         return;
                     }
 
@@ -156,5 +203,13 @@ public class Boss_My extends JFrame {
     private JLabel label4;
     private JButton button1;
     private JButton button2;
+
+    private JCheckBox checkBox1;
+    private JCheckBox checkBox2;
+    private JCheckBox checkBox3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    public static void main(String[] args) {
+        new Boss_My();
+    }
 }

@@ -12,10 +12,10 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import Connection.*;
-import jdk.nashorn.internal.scripts.JO;
 
 /**
  * @author 1
@@ -45,13 +45,18 @@ public class Frontdesk_GoodsMenu extends JFrame {
             }
         };
         table1.setModel(tableModel);
+        // 设置表格中的数据居中显示
+        DefaultTableCellRenderer r=new DefaultTableCellRenderer();
+        r.setHorizontalAlignment(JLabel.CENTER);
+        table1.setDefaultRenderer(Object.class,r);
 
         //======== scrollPane1 ========
         {
             scrollPane1.setViewportView(table1);
         }
         contentPane.add(scrollPane1);
-        scrollPane1.setBounds(30, 40, 515, 295);
+        //scrollPane1.setBounds(30, 40, 515, 295);
+        scrollPane1.setBounds(20, 40, 760, 300);
 
         //---- button1 -加入购物车---
         button1.setText("\u52a0\u5165\u8d2d\u7269\u8f66");
@@ -119,7 +124,7 @@ public class Frontdesk_GoodsMenu extends JFrame {
         //---- button2 -购物车---
         button2.setText("\u8d2d\u7269\u8f66");
         contentPane.add(button2);
-        button2.setBounds(new Rectangle(new Point(460, 355), button2.getPreferredSize()));
+        button2.setBounds(new Rectangle(new Point(660, 355), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new Frontdesk_shoppingCar();

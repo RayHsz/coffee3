@@ -69,7 +69,7 @@ public class Boss_add extends JFrame {
 
 
         //---- label4 ----
-        label4.setText("¿‡–Õ");
+        label4.setText("Á±ªÂûã");
         contentPane.add(label4);
         label4.setBounds(240, 80, 90, 20);
         contentPane.add(textField4);
@@ -78,7 +78,7 @@ public class Boss_add extends JFrame {
 
 
         //---- label5 ----
-        label5.setText("ø‚¥Ê");
+        label5.setText("Â∫ìÂ≠ò");
         contentPane.add(label5);
         label5.setBounds(20, 140, 55, 20);
         contentPane.add(textField5);
@@ -95,7 +95,7 @@ public class Boss_add extends JFrame {
 
 
         //---- button1 ----
-        button2.setText("±£¥Ê");
+        button2.setText("‰øùÂ≠ò");
         contentPane.add(button2);
         button2.setBounds(200, 300, 100, 30);
         button2.addActionListener(new ActionListener() {
@@ -126,7 +126,7 @@ public class Boss_add extends JFrame {
 
                     pstmt.close();
                     ConnectionHandler1.closeConnection();
-                    JOptionPane.showMessageDialog(contentPane, "–¬‘ˆ≥…π¶£°");
+                    JOptionPane.showMessageDialog(contentPane, "Êñ∞Â¢ûÊàêÂäüÔºÅ");
                     dispose();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();

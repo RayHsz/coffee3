@@ -59,12 +59,13 @@ public class Frontdesk_Mainmenu extends JFrame {
             }
         });
 
-        //---- button3 退出菜单按钮----
-        button3.setText("\u9000\u51fa");
+        //---- button3 登出按钮----
+        button3.setText("\u767B\u51FA");
         contentPane.add(button3);
         button3.setBounds(110,330,175,50);
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                new Frontdesk_Login();
                 dispose();
             }
         });

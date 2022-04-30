@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,6 +44,11 @@ public class Boss_UserShow extends JFrame {
         };
         table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table1.setModel(tableModel);
+        // è®¾ç½®è¡¨æ ¼ä¸­çš„æ•°æ®å±…ä¸­æ˜¾ç¤º
+        DefaultTableCellRenderer r=new DefaultTableCellRenderer();
+        r.setHorizontalAlignment(JLabel.CENTER);
+        table1.setDefaultRenderer(Object.class,r);
+
         //======== this ========
         final JPanel contentPane = (JPanel) getContentPane();
         contentPane.setLayout(null);
@@ -51,11 +57,11 @@ public class Boss_UserShow extends JFrame {
         label1.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 30));
-        label1.setText("ÓÃ»§ĞÅÏ¢");
+        label1.setText("ç”¨æˆ·ä¿¡æ¯");
         contentPane.add(label1);
         label1.setBounds(460, 0, 600, 60);
 
-        button1.setText("É¾³ı");
+        button1.setText("åˆ é™¤");
         contentPane.add(button1);
         button1.setBounds(510, 355, 100, 30);
         button1.addActionListener(new ActionListener() {
@@ -68,7 +74,7 @@ public class Boss_UserShow extends JFrame {
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setInt(1,id);
                     pstmt.execute();
-                    JOptionPane.showMessageDialog(contentPane, "ÒÑÉ¾³ı£¡");
+                    JOptionPane.showMessageDialog(contentPane, "å·²åˆ é™¤ï¼");
                     DefaultTableModel tableModel = new DefaultTableModel(getDataFromDatabase(), head) {
                         public boolean isCellEditable(int row, int column) {
                             return false;
@@ -86,7 +92,7 @@ public class Boss_UserShow extends JFrame {
             }
         });
 
-        button2.setText("ĞÂÔö");
+        button2.setText("æ–°å¢");
         contentPane.add(button2);
         button2.setBounds(610, 355, 100, 30);
         button2.addActionListener(new ActionListener() {
@@ -95,7 +101,7 @@ public class Boss_UserShow extends JFrame {
             }
         });
 
-        button3.setText("ĞŞ¸Ä");
+        button3.setText("ä¿®æ”¹");
         contentPane.add(button3);
         button3.setBounds(710, 355, 100, 30);
         button3.addActionListener(new ActionListener() {
@@ -123,7 +129,7 @@ public class Boss_UserShow extends JFrame {
         contentPane.add(textField1);
         textField1.setBounds(270, 355, 130, 30);
 
-        button4.setText("Ë¢ĞÂ");
+        button4.setText("åˆ·æ–°");
         contentPane.add(button4);
         button4.setBounds(410, 355, 100, 30);
         button4.addActionListener(new ActionListener() {
@@ -136,7 +142,7 @@ public class Boss_UserShow extends JFrame {
                 table1.setModel(tableModel);
             }
         });
-        button5.setText("·µ»Ø");
+        button5.setText("è¿”å›");
         contentPane.add(button5);
         button5.setBounds(20,355,100,30);
         button5.addActionListener(new ActionListener() {
@@ -202,7 +208,7 @@ public class Boss_UserShow extends JFrame {
 
     private JScrollPane scrollPane1;
     private JTable table1;
-    private String head[] = {"Ô±¹¤ID", "Ô±¹¤ĞÕÃû", "ÓÃ»§Ãû", "ÃÜÂë", "Ö°Î»","ÄêÁä"};
+    private String head[] = {"å‘˜å·¥ID", "å‘˜å·¥å§“å", "ç”¨æˆ·å", "å¯†ç ", "èŒä½","å¹´é¾„"};
     private Object[][] data = null;
     private JButton button1;
     private JButton button2;

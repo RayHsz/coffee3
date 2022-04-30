@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,18 +34,19 @@ public class Boss_Login extends JFrame {
         button1 = new JButton();
         button2 = new JButton();
         button3 = new JButton();
+        checkBox1 = new JCheckBox();
 
         //======== this ========
         final Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
 
-        //---- label1 ÓÃ»§Ãû----
+        //---- label1 ç”¨æˆ·å----
         label1.setText("\u7528\u6237\u540d");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(80, 70), label1.getPreferredSize()));
 
-        //---- label2 ÃÜÂë----
+        //---- label2 å¯†ç ----
         label2.setText("\u5bc6\u7801");
         contentPane.add(label2);
         label2.setBounds(85, 100, 35, 20);
@@ -52,7 +55,21 @@ public class Boss_Login extends JFrame {
         contentPane.add(passwordField);
         passwordField.setBounds(130, 100, 115, passwordField.getPreferredSize().height);
 
-        //---- button1 µÇÂ¼°´Å¥----
+        //---- æ˜¾ç¤ºå¯†ç æŒ‰é’® ----
+        checkBox1.setText("\u663e\u793a\u5bc6\u7801");
+        contentPane.add(checkBox1);
+        checkBox1.setBounds(new Rectangle(new Point(245, 97), checkBox1.getPreferredSize()));
+        checkBox1.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==ItemEvent.SELECTED){//è¢«é€‰ä¸­
+                    passwordField.setEchoChar((char)0);
+                }else{
+                    passwordField.setEchoChar('*');
+                }
+            }
+        });
+
+        //---- button1 ç™»å½•æŒ‰é’®----
         button1.setText("\u767b\u5f55");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(130, 140), button1.getPreferredSize()));
@@ -62,12 +79,12 @@ public class Boss_Login extends JFrame {
                 String password = passwordField.getText().trim();
 
                 if (username.equals("") || password.equals("")) {
-                    JOptionPane.showMessageDialog(contentPane, "ÊäÈëµÄÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ£¡");
+                    JOptionPane.showMessageDialog(contentPane, "è¾“å…¥çš„ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
                     return;
                 }
 
 
-                //JDBC ²éÑ¯µ±Ç°ÓÃ»§ÓÃ»§ÃûÊÇ·ñ´æÔÚ
+                //JDBC æŸ¥è¯¢å½“å‰ç”¨æˆ·ç”¨æˆ·åæ˜¯å¦å­˜åœ¨
                 try {
                     Connection conn = ConnectionHandler1.getConnection();
 
@@ -80,15 +97,15 @@ public class Boss_Login extends JFrame {
                     ResultSet rs = pstmt.executeQuery();
 
                      if (rs.next()) {
-                        //Èô²éÑ¯ÓĞ½á¹û£¬ÔòËµÃ÷ÓÃ»§ÒÑ¾­´æÔÚ
-                        JOptionPane.showMessageDialog(contentPane, "µÇÂ½³É¹¦£¡");
+                        //è‹¥æŸ¥è¯¢æœ‰ç»“æœï¼Œåˆ™è¯´æ˜ç”¨æˆ·å·²ç»å­˜åœ¨
+                        //JOptionPane.showMessageDialog(contentPane, "ç™»é™†æˆåŠŸï¼");
                          ConnectionHandler1.closeConnection();
                          pstmt.close();
                         dispose();
                         new Boss_Main();
 
                     }else{
-                        JOptionPane.showMessageDialog(contentPane,"ÊäÈëµÄÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+                        JOptionPane.showMessageDialog(contentPane,"è¾“å…¥çš„ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
                     }
 
 
@@ -98,7 +115,7 @@ public class Boss_Login extends JFrame {
             }
         });
 
-        //---- button2 ·µ»Ø°´Å¥----
+        //---- button2 è¿”å›æŒ‰é’®----
         button2.setText("\u8fd4\u56de");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(0, 0), button2.getPreferredSize()));
@@ -128,6 +145,7 @@ public class Boss_Login extends JFrame {
     private JButton button2;
     private JButton button3;
     private JPasswordField passwordField;
+    private JCheckBox checkBox1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public static void main(String[] args) {

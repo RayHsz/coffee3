@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_Login.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_My.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_OrderShow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_ProductShow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_Update.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_UserShow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_UserUpdate.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Boss_Interface/Boss_add.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Connection/ConnectionHandler.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Connection/ConnectionHandler1.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Frontdesk_Interface/Frontdesk_Login.java" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

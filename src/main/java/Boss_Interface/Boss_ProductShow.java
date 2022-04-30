@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,6 +42,10 @@ public class Boss_ProductShow extends JFrame {
         };
         table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table1.setModel(tableModel);
+        // è®¾ç½®è¡¨æ ¼ä¸­çš„æ•°æ®å±…ä¸­æ˜¾ç¤º
+        DefaultTableCellRenderer r=new DefaultTableCellRenderer();
+        r.setHorizontalAlignment(JLabel.CENTER);
+        table1.setDefaultRenderer(Object.class,r);
 
         //======== this ========
         final JPanel contentPane = (JPanel) getContentPane();
@@ -50,11 +55,11 @@ public class Boss_ProductShow extends JFrame {
         label1.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 30));
-        label1.setText("ÉÌÆ·ĞÅÏ¢");
+        label1.setText("å•†å“ä¿¡æ¯");
         contentPane.add(label1);
         label1.setBounds(460, 0, 600, 60);
 
-        button1.setText("É¾³ı");
+        button1.setText("åˆ é™¤");
         contentPane.add(button1);
         button1.setBounds(510, 355, 100, 30);
         button1.addActionListener(new ActionListener() {
@@ -73,7 +78,7 @@ public class Boss_ProductShow extends JFrame {
                     pstmt = conn.prepareStatement(sql2);
                     pstmt.setInt(1,id);
                     pstmt.execute();
-                    JOptionPane.showMessageDialog(contentPane, "É¾³ı³É¹¦£¡");
+                    JOptionPane.showMessageDialog(contentPane, "åˆ é™¤æˆåŠŸï¼");
                     pstmt.close();
                     ConnectionHandler1.closeConnection();
                 } catch (SQLException throwables) {
@@ -89,7 +94,7 @@ public class Boss_ProductShow extends JFrame {
             }
         });
 
-        button2.setText("ĞÂÔö");
+        button2.setText("æ–°å¢");
         contentPane.add(button2);
         button2.setBounds(610, 355, 100, 30);
         button2.addActionListener(new ActionListener() {
@@ -98,14 +103,14 @@ public class Boss_ProductShow extends JFrame {
             }
         });
 
-        button3.setText("ĞŞ¸Ä");
+        button3.setText("ä¿®æ”¹");
         contentPane.add(button3);
         button3.setBounds(710, 355, 100, 30);
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int rowNo = table1.getSelectedRow();
                 if (rowNo == -1){
-                    JOptionPane.showMessageDialog(contentPane, "ÇëÑ¡ÖĞĞèÒªĞŞ¸ÄµÄÉÌÆ·¡£");
+                    JOptionPane.showMessageDialog(contentPane, "è¯·é€‰ä¸­éœ€è¦ä¿®æ”¹çš„å•†å“ã€‚");
                     return;
                 }
                 int id = Integer.parseInt(String.valueOf(table1.getValueAt(rowNo,0))) ;
@@ -124,7 +129,7 @@ public class Boss_ProductShow extends JFrame {
         contentPane.add(textField1);
         textField1.setBounds(270, 355, 130, 30);
 
-        button4.setText("Ë¢ĞÂ");
+        button4.setText("åˆ·æ–°");
         contentPane.add(button4);
         button4.setBounds(410, 355, 100, 30);
         button4.addActionListener(new ActionListener() {
@@ -137,7 +142,7 @@ public class Boss_ProductShow extends JFrame {
                 table1.setModel(tableModel2);
             }
         });
-        button5.setText("·µ»Ø");
+        button5.setText("è¿”å›");
         contentPane.add(button5);
         button5.setBounds(20,355,100,30);
         button5.addActionListener(new ActionListener() {
@@ -210,7 +215,7 @@ public class Boss_ProductShow extends JFrame {
     }
     private JScrollPane scrollPane1;
     private JTable table1;
-    private String head[] = {"id", "ÉÌÆ·Ãû³Æ", "µ¥¼Û", "ÀàĞÍ", "¿â´æ"};
+    private String head[] = {"id", "å•†å“åç§°", "å•ä»·", "ç±»å‹", "åº“å­˜"};
     private Object[][] data = null;
     private JButton button1;
     private JButton button2;

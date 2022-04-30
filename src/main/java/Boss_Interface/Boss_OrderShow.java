@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,6 +48,11 @@ public class Boss_OrderShow extends JFrame {
         };
         table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table1.setModel(tableModel);
+        // è®¾ç½®è¡¨æ ¼ä¸­çš„æ•°æ®å±…ä¸­æ˜¾ç¤º
+        DefaultTableCellRenderer r=new DefaultTableCellRenderer();
+        r.setHorizontalAlignment(JLabel.CENTER);
+        table1.setDefaultRenderer(Object.class,r);
+
         //======== this ========
         final JPanel contentPane = (JPanel) getContentPane();
         contentPane.setLayout(null);
@@ -55,7 +61,7 @@ public class Boss_OrderShow extends JFrame {
         label1.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 30));
-        label1.setText("½ñÈÕ¶©µ¥");
+        label1.setText("ä»Šæ—¥è®¢å•");
         contentPane.add(label1);
         label1.setBounds(460, 0, 600, 60);
 
@@ -63,17 +69,17 @@ public class Boss_OrderShow extends JFrame {
         label2.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 30));
-        label2.setText("½ñÈÕ×ÜÏúÊÛ¶î:"+allPrice+"Ôª");
+        label2.setText("ä»Šæ—¥é”€å”®æ€»é¢:"+allPrice+"å…ƒ");
         contentPane.add(label2);
-        label2.setBounds(550,400,600,30);
+        label2.setBounds(500,420,600,30);
 
-        label3.setText("ÇëÊäÈë²éÑ¯ÈÕÆÚ:");
+        label3.setText("è¯·è¾“å…¥æŸ¥è¯¢æ—¥æœŸ:");
         contentPane.add(label3);
         label3.setBounds(160,355,100,30);
 
         label4.setFont(new
                 Font("STHeiti Light", Font.BOLD,
-                25));
+                30));
         Connection conn = ConnectionHandler1.getConnection();
         String sql  = "SELECT NAME,MAX(allorder)\n" +
                 "FROM (SELECT p.NAME,SUM(amount) AS allorder\n" +
@@ -93,11 +99,11 @@ public class Boss_OrderShow extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        label4.setText("ÏúÊÛÁ¿×î¸ßµÄÉÌÆ·Îª:"+mostProduct);
+        label4.setText("é”€é‡å† å†›å•†å“:"+mostProduct);
         contentPane.add(label4);
-        label4.setBounds(600,450,600,30);
+        label4.setBounds(550,485,600,30);
 
-        button1.setText("Ë¢ĞÂ");
+        button1.setText("åˆ·æ–°");
         contentPane.add(button1);
         button1.setBounds(510, 355, 100, 30);
         button1.addActionListener(new ActionListener() {
@@ -108,11 +114,11 @@ public class Boss_OrderShow extends JFrame {
                     }
                 };
                 table1.setModel(tableModel);
-                label2.setText("½ñÈÕ×ÜÏúÊÛ¶î:"+allPrice+"Ôª");
+                label2.setText("ä»Šæ—¥æ€»é”€å”®é¢:"+allPrice+"å…ƒ");
             }
         });
 
-        button2.setText("ĞÂÔö");
+        button2.setText("æ–°å¢");
         contentPane.add(button2);
         button2.setBounds(610, 355, 100, 30);
         button2.addActionListener(new ActionListener() {
@@ -121,7 +127,7 @@ public class Boss_OrderShow extends JFrame {
             }
         });
 
-        button3.setText("ĞŞ¸Ä");
+        button3.setText("ä¿®æ”¹");
         contentPane.add(button3);
         button3.setBounds(710, 355, 100, 30);
         button3.addActionListener(new ActionListener() {
@@ -133,7 +139,7 @@ public class Boss_OrderShow extends JFrame {
         contentPane.add(textField1);
         textField1.setBounds(270, 355, 130, 30);
 
-        button4.setText("²éÑ¯");
+        button4.setText("æŸ¥è¯¢");
         contentPane.add(button4);
         button4.setBounds(410, 355, 100, 30);
         button4.addActionListener(new ActionListener() {
@@ -145,11 +151,11 @@ public class Boss_OrderShow extends JFrame {
                     }
                 };
                 table1.setModel(tableModel);
-                label2.setText(date+"ÈÕµÄÏúÊÛ¶î:"+allPrice+"Ôª");
+                label2.setText(date+"æ—¥çš„é”€å”®é¢:"+allPrice+"å…ƒ");
 
             }
         });
-        button5.setText("·µ»Ø");
+        button5.setText("è¿”å›");
         contentPane.add(button5);
         button5.setBounds(20,355,100,30);
         button5.addActionListener(new ActionListener() {
@@ -274,7 +280,7 @@ public class Boss_OrderShow extends JFrame {
 
     private JScrollPane scrollPane1;
     private JTable table1;
-    private String head[] = {"¶©µ¥ID", "ÉÌÆ·Ãû³Æ", "µ¥¼Û", "ÊıÁ¿", "ÏÂµ¥Ê±¼ä","¶©µ¥½ğ¶î"};
+    private String head[] = {"è®¢å•ID", "å•†å“åç§°", "å•ä»·", "æ•°é‡", "ä¸‹å•æ—¶é—´","è®¢å•é‡‘é¢"};
     private Object[][] data = null;
     private JButton button1;
     private JButton button2;
@@ -290,4 +296,8 @@ public class Boss_OrderShow extends JFrame {
     private String mostProduct;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    public static void main(String[] args) {
+        new Boss_OrderShow();
+    }
 }

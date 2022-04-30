@@ -30,7 +30,7 @@ public class Boss_Main extends JFrame {
         contentPane.setLayout(null);
         contentPane.setPreferredSize(new Dimension(800,600));
 
-        //---- button1 商品管理----
+        //---- button1 鍟嗗搧绠＄悊----
         button1.setText("\u5546\u54c1\u7ba1\u7406");
         contentPane.add(button1);
         button1.setBounds(235, 50, 120, 50);
@@ -41,7 +41,7 @@ public class Boss_Main extends JFrame {
             }
         });
 
-        //---- button2 订单管理----
+        //---- button2 璁㈠崟绠＄悊----
         button2.setText("\u8ba2\u5355\u7ba1\u7406");
         contentPane.add(button2);
         button2.setBounds(235, 110, 120, 50);
@@ -52,7 +52,7 @@ public class Boss_Main extends JFrame {
             }
         });
 
-        //---- button3 用户管理----
+        //---- button3 鐢ㄦ埛绠＄悊----
         button3.setText("\u7528\u6237\u7ba1\u7406");
         contentPane.add(button3);
         button3.setBounds(235, 170, 120, 50);
@@ -63,7 +63,7 @@ public class Boss_Main extends JFrame {
             }
         });
 
-        //---- button4 我的----
+        //---- button4 鎴戠殑----
         button4.setText("\u6211\u7684");
         contentPane.add(button4);
         button4.setBounds(235, 230, 120, 50);
@@ -74,7 +74,7 @@ public class Boss_Main extends JFrame {
             }
         });
 
-        //---- button5 登出----
+        //---- button5 鐧诲嚭----
         button5.setText("\u767b\u51fa");
         contentPane.add(button5);
         button5.setBounds(235, 290, 120, 50);
@@ -100,4 +100,8 @@ public class Boss_Main extends JFrame {
     private JButton button4;
     private JButton button5;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    public static void main(String[] args) {
+        new Boss_Main();
+    }
 }

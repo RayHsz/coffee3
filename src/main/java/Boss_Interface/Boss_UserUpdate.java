@@ -52,7 +52,7 @@ public class Boss_UserUpdate extends JFrame {
         contentPane.setPreferredSize(new Dimension(500,400));
 
         //---- label1 ----
-        label1.setText("‘±π§ID");
+        label1.setText("ÂëòÂ∑•ID");
         contentPane.add(label1);
         label1.setBounds(20, 20, 55, 20);
         contentPane.add(textField1);
@@ -63,7 +63,7 @@ public class Boss_UserUpdate extends JFrame {
 
 
         //---- label2 ----
-        label2.setText("‘±π§–’√˚");
+        label2.setText("ÂëòÂ∑•ÂßìÂêç");
         contentPane.add(label2);
         label2.setBounds(240, 20, 90, 20);
         contentPane.add(textField2);
@@ -75,7 +75,7 @@ public class Boss_UserUpdate extends JFrame {
 
 
         //---- label3 ----
-        label3.setText("”√ªß√˚");
+        label3.setText("Áî®Êà∑Âêç");
         contentPane.add(label3);
         label3.setBounds(20, 80, 55, 20);
         contentPane.add(textField3);
@@ -86,7 +86,7 @@ public class Boss_UserUpdate extends JFrame {
 
 
         //---- label4 ----
-        label4.setText("√‹¬Î");
+        label4.setText("ÂØÜÁ†Å");
         contentPane.add(label4);
         label4.setBounds(240, 80, 90, 20);
         contentPane.add(textField4);
@@ -98,7 +98,7 @@ public class Boss_UserUpdate extends JFrame {
 
 
         //---- label5 ----
-        label5.setText("÷∞Œª");
+        label5.setText("ËÅå‰Ωç");
         contentPane.add(label5);
         label5.setBounds(20, 140, 55, 20);
         contentPane.add(textField5);
@@ -110,7 +110,7 @@ public class Boss_UserUpdate extends JFrame {
 
 
         //---- label6 ----
-        label6.setText("ƒÍ¡‰");
+        label6.setText("Âπ¥ÈæÑ");
         contentPane.add(label6);
         label6.setBounds(240, 140, 90, 20);
         contentPane.add(textField6);
@@ -121,7 +121,7 @@ public class Boss_UserUpdate extends JFrame {
 
 
         //---- button1 ----
-        button2.setText("±£¥Ê");
+        button2.setText("‰øùÂ≠ò");
         contentPane.add(button2);
         button2.setBounds(200, 300, 100, 30);
         button2.addActionListener(new ActionListener() {
@@ -145,7 +145,7 @@ public class Boss_UserUpdate extends JFrame {
                         pstmt.setString(5, job);
                         pstmt.setInt(6, age);
                         pstmt.execute();
-                        JOptionPane.showMessageDialog(contentPane, "“—ÃÌº”£°");
+                        JOptionPane.showMessageDialog(contentPane, "Â∑≤Ê∑ªÂä†ÔºÅ");
                         pstmt.close();
                         ConnectionHandler1.closeConnection();
                         dispose();
@@ -171,7 +171,7 @@ public class Boss_UserUpdate extends JFrame {
                         pstmt.setInt(5,age);
                         pstmt.setInt(6,id);
                         pstmt.execute();
-                        JOptionPane.showMessageDialog(contentPane, "“—–ﬁ∏ƒ£°");
+                        JOptionPane.showMessageDialog(contentPane, "Â∑≤‰øÆÊîπÔºÅ");
 
                         pstmt.close();
                         ConnectionHandler1.closeConnection();

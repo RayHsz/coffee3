@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import Connection.*;
 import bean.ShoppingCar;
@@ -49,17 +50,22 @@ public class Frontdesk_shoppingCar extends JFrame {
         };
         table1.setModel(tableModel);
 
+        // 设置表格中的数据居中显示
+        DefaultTableCellRenderer r=new DefaultTableCellRenderer();
+        r.setHorizontalAlignment(JLabel.CENTER);
+        table1.setDefaultRenderer(Object.class,r);
+
         //======== scrollPane1 ========
         {
             scrollPane1.setViewportView(table1);
         }
         contentPane.add(scrollPane1);
-        scrollPane1.setBounds(40, 45, scrollPane1.getPreferredSize().width, 275);
+        scrollPane1.setBounds(20, 45,760,300);
 
         //---- button1 -移出购物车---
         button1.setText("\u79fb\u51fa\u8d2d\u7269\u8f66");
         contentPane.add(button1);
-        button1.setBounds(new Rectangle(new Point(55, 330), button1.getPreferredSize()));
+        button1.setBounds(new Rectangle(new Point(55, 355), button1.getPreferredSize()));
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //获取当前选中的行
@@ -80,8 +86,12 @@ public class Frontdesk_shoppingCar extends JFrame {
                         JOptionPane.showMessageDialog(contentPane,"移除成功！");
 
                         //刷新
-                        new Frontdesk_shoppingCar();
-                        dispose();
+                        final DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
+                        table1.setModel(tableModel);
 
                     }catch (SQLException r){
                         r.printStackTrace();
@@ -89,6 +99,30 @@ public class Frontdesk_shoppingCar extends JFrame {
                         r.printStackTrace();
                         JOptionPane.showMessageDialog(contentPane,"请选择需要移除的商品");
                     }
+
+                final DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                table1.setModel(tableModel);
+
+                try{
+
+                    Connection conn = ConnectionHandler.getConnection();
+                    String sql = "select cast(sum(price*num) as decimal(10,2)) sumPrice from shoppingCar";
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    ResultSet rs=pstmt.executeQuery();
+                    while(rs.next()){
+                        sumPrice = rs.getFloat("sumPrice");
+                    }
+                    String key = ""+sumPrice;
+                    label1.setText("\u603b\u4ef7"+sumPrice+"\uffe5");
+
+                }catch(SQLException r){
+                    r.printStackTrace();
+                }
+                label1.setText("\u603b\u4ef7"+sumPrice+"\uffe5");
 //                }
             }
         });
@@ -96,7 +130,7 @@ public class Frontdesk_shoppingCar extends JFrame {
         //---- button2 -清空购物车---
         button2.setText("\u6e05\u7a7a\u8d2d\u7269\u8f66");
         contentPane.add(button2);
-        button2.setBounds(new Rectangle(new Point(171, 330), button2.getPreferredSize()));
+        button2.setBounds(new Rectangle(new Point(241, 355), button2.getPreferredSize()));
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(contentPane,"清空完毕！");
@@ -110,8 +144,31 @@ public class Frontdesk_shoppingCar extends JFrame {
                     r.printStackTrace();
                 }
 
-                new Frontdesk_shoppingCar();
-                dispose();
+                //清空购物车之后重置总价 ￥
+                final DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                table1.setModel(tableModel);
+
+                try{
+
+                    Connection conn = ConnectionHandler.getConnection();
+                    String sql = "select cast(sum(price*num) as decimal(10,2)) sumPrice from shoppingCar";
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    ResultSet rs=pstmt.executeQuery();
+                    while(rs.next()){
+                        sumPrice = rs.getFloat("sumPrice");
+                    }
+                    String key = ""+sumPrice;
+                    label1.setText("\u603b\u4ef7"+sumPrice+"\uffe5");
+
+                }catch(SQLException r){
+                    r.printStackTrace();
+                }
+                label1.setText("\u603b\u4ef7"+sumPrice+"\uffe5");
+
 
             }
         });
@@ -119,7 +176,7 @@ public class Frontdesk_shoppingCar extends JFrame {
         //---- label1 -总价：xx ￥---
         label1.setText("\u603b\u4ef7\uff1a\uffe5");
         contentPane.add(label1);
-        label1.setBounds(new Rectangle(new Point(286, 335),new Dimension(100,20)));
+        label1.setBounds(new Rectangle(new Point(406, 355),new Dimension(100,20)));
         try{
 
             Connection conn = ConnectionHandler.getConnection();
@@ -139,7 +196,7 @@ public class Frontdesk_shoppingCar extends JFrame {
         //---- button3 -结算---
         button3.setText("\u7ed3\u7b97");
         contentPane.add(button3);
-        button3.setBounds(new Rectangle(new Point(400, 330), button3.getPreferredSize()));
+        button3.setBounds(new Rectangle(new Point(570, 355), button3.getPreferredSize()));
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 /*
