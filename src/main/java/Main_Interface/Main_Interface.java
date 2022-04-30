@@ -1,5 +1,7 @@
 package Main_Interface;
 
+import Boss_Interface.Boss_Login;
+import Boss_Interface.Boss_Main;
 import Frontdesk_Interface.Frontdesk_Login;
 
 import javax.swing.*;
@@ -47,8 +49,8 @@ public class Main_Interface extends JFrame {
         button3.setBounds(110, 155, 175, 50);
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                dispose();
-//                new Main_Interface();
+                dispose();
+                new Boss_Login();
             }
         });
 
