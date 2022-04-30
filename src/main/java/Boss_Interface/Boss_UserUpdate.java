@@ -168,10 +168,7 @@ public class Boss_UserUpdate extends JFrame {
                         throwables.printStackTrace();
                     }
 
-
                 }
-
-
 
             }
         });
