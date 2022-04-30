@@ -5,8 +5,7 @@
 package Boss_Interface;
 
 import bean.Employee;
-import bean.Product;
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 import bean.User;
 
 import java.awt.*;
@@ -64,7 +63,7 @@ public class Boss_UserShow extends JFrame {
                 int rowNo = table1.getSelectedRow();
                 int id = Integer.parseInt(String.valueOf(table1.getValueAt(rowNo,0)));
                 String sql = "DELETE FROM emp WHERE ID = ?";
-                Connection conn = ConnectionHandler.getConnection();
+                Connection conn = ConnectionHandler1.getConnection();
                 try {
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setInt(1,id);
@@ -78,7 +77,7 @@ public class Boss_UserShow extends JFrame {
                     table1.setModel(tableModel);
 
                     pstmt.close();
-                    ConnectionHandler.closeConnection();
+                    ConnectionHandler1.closeConnection();
 
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
@@ -162,7 +161,7 @@ public class Boss_UserShow extends JFrame {
     }
 
     public Object[][] getDataFromDatabase() {
-        Connection conn = ConnectionHandler.getConnection();
+        Connection conn = ConnectionHandler1.getConnection();
         java.util.List<Employee> list = new ArrayList<Employee>();
         String sql = "SELECT * FROM emp";
         try {
@@ -181,7 +180,7 @@ public class Boss_UserShow extends JFrame {
 
             rs.close();
             pstmt.close();
-            ConnectionHandler.closeConnection();
+            ConnectionHandler1.closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

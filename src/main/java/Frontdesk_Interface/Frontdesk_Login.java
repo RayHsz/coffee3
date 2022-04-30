@@ -4,7 +4,7 @@
 
 package Frontdesk_Interface;
 
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +63,7 @@ public class Frontdesk_Login extends JFrame {
 
                 //JDBC 查询当前用户用户名是否存在
                 try {
-                    Connection conn = ConnectionHandler.getConnection();
+                    Connection conn = ConnectionHandler1.getConnection();
 
                     String sql = "select * from emp where empaccount = ? and emppassword = ?";
                     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -83,8 +83,9 @@ public class Frontdesk_Login extends JFrame {
                         JOptionPane.showMessageDialog(contentPane,"输入的用户名或密码错误！");
                     }
 
-                    conn.close();
+
                     pstmt.close();
+                    ConnectionHandler1.closeConnection();
                 }catch (Exception r){
                     r.printStackTrace();
                 }

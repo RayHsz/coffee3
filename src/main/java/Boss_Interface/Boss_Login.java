@@ -4,7 +4,7 @@
 
 package Boss_Interface;
 
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,7 +69,7 @@ public class Boss_Login extends JFrame {
 
                 //JDBC 查询当前用户用户名是否存在
                 try {
-                    Connection conn = ConnectionHandler.getConnection();
+                    Connection conn = ConnectionHandler1.getConnection();
 
                     String sql = "select * from boss where name = ? and password = ?";
                     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class Boss_Login extends JFrame {
                      if (rs.next()) {
                         //若查询有结果，则说明用户已经存在
                         JOptionPane.showMessageDialog(contentPane, "登陆成功！");
-                         ConnectionHandler.closeConnection();
+                         ConnectionHandler1.closeConnection();
                          pstmt.close();
                         dispose();
                         new Boss_Main();

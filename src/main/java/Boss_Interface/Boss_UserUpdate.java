@@ -5,7 +5,7 @@
 package Boss_Interface;
 
 import java.awt.*;
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 import bean.User;
 
 import java.awt.event.ActionEvent;
@@ -57,7 +57,9 @@ public class Boss_UserUpdate extends JFrame {
         label1.setBounds(20, 20, 55, 20);
         contentPane.add(textField1);
         textField1.setBounds(70, 20, 130, 20);
-        textField1.setText(String.valueOf(user.getId()));
+        if (isUpdate){
+            textField1.setText(String.valueOf(user.getId()));
+        }
 
 
         //---- label2 ----
@@ -66,7 +68,9 @@ public class Boss_UserUpdate extends JFrame {
         label2.setBounds(240, 20, 90, 20);
         contentPane.add(textField2);
         textField2.setBounds(300, 20, 130, 20);
-        textField2.setText(user.getName());
+        if (isUpdate){
+            textField2.setText(user.getName());
+        }
 
 
 
@@ -76,7 +80,9 @@ public class Boss_UserUpdate extends JFrame {
         label3.setBounds(20, 80, 55, 20);
         contentPane.add(textField3);
         textField3.setBounds(70, 80, 130, 20);
-        textField3.setText(user.getUserName());
+        if (isUpdate){
+            textField3.setText(user.getUserName());
+        }
 
 
         //---- label4 ----
@@ -85,7 +91,9 @@ public class Boss_UserUpdate extends JFrame {
         label4.setBounds(240, 80, 90, 20);
         contentPane.add(textField4);
         textField4.setBounds(300, 80, 130, 20);
-        textField4.setText(user.getPassWord());
+        if (isUpdate){
+            textField4.setText(user.getPassWord());
+        }
 
 
 
@@ -95,7 +103,9 @@ public class Boss_UserUpdate extends JFrame {
         label5.setBounds(20, 140, 55, 20);
         contentPane.add(textField5);
         textField5.setBounds(70, 140, 130, 20);
-        textField5.setText(user.getJob());
+        if (isUpdate){
+            textField5.setText(user.getJob());
+        }
 
 
 
@@ -105,7 +115,9 @@ public class Boss_UserUpdate extends JFrame {
         label6.setBounds(240, 140, 90, 20);
         contentPane.add(textField6);
         textField6.setBounds(300, 140, 130, 20);
-        textField6.setText(String.valueOf(user.getAge()));
+        if (isUpdate){
+            textField6.setText(String.valueOf(user.getAge()));
+        }
 
 
         //---- button1 ----
@@ -123,7 +135,7 @@ public class Boss_UserUpdate extends JFrame {
                     int age = Integer.parseInt(textField6.getText().trim());
 
                     String sql = "INSERT INTO emp VALUES(?,?,?,?,?,?)";
-                    Connection conn = ConnectionHandler.getConnection();
+                    Connection conn = ConnectionHandler1.getConnection();
                     try {
                         PreparedStatement pstmt = conn.prepareStatement(sql);
                         pstmt.setInt(1, id);
@@ -135,7 +147,7 @@ public class Boss_UserUpdate extends JFrame {
                         pstmt.execute();
                         JOptionPane.showMessageDialog(contentPane, "已添加！");
                         pstmt.close();
-                        ConnectionHandler.closeConnection();
+                        ConnectionHandler1.closeConnection();
                         dispose();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
@@ -149,7 +161,7 @@ public class Boss_UserUpdate extends JFrame {
                     int age = Integer.parseInt(textField6.getText().trim());
 
                     String sql = "UPDATE emp SET empname = ?,empAccount = ?,empPassword = ?,job = ?,age = ? WHERE ID = ?";
-                    Connection conn = ConnectionHandler.getConnection();
+                    Connection conn = ConnectionHandler1.getConnection();
                     try {
                         PreparedStatement pstmt = conn.prepareStatement(sql);
                         pstmt.setString(1,name);
@@ -162,7 +174,7 @@ public class Boss_UserUpdate extends JFrame {
                         JOptionPane.showMessageDialog(contentPane, "已修改！");
 
                         pstmt.close();
-                        ConnectionHandler.closeConnection();
+                        ConnectionHandler1.closeConnection();
                         dispose();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();

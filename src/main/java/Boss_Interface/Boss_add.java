@@ -5,7 +5,7 @@
 package Boss_Interface;
 
 import java.awt.*;
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -108,7 +108,7 @@ public class Boss_add extends JFrame {
 
                 String sql = "INSERT INTO product VALUES(?,?,?,?)";
                 String sql2 = "INSERT INTO stock VALUES(?,?,?)";
-                Connection conn = ConnectionHandler.getConnection();
+                Connection conn = ConnectionHandler1.getConnection();
                 try {
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setInt(1,id);
@@ -125,7 +125,7 @@ public class Boss_add extends JFrame {
                     pstmt.execute();
 
                     pstmt.close();
-                    ConnectionHandler.closeConnection();
+                    ConnectionHandler1.closeConnection();
                     JOptionPane.showMessageDialog(contentPane, "新增成功！");
                     dispose();
                 } catch (SQLException throwables) {

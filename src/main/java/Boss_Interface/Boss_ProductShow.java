@@ -3,7 +3,7 @@
  */
 
 package Boss_Interface;
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 import bean.Product;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -63,7 +63,7 @@ public class Boss_ProductShow extends JFrame {
                 int id = Integer.parseInt(String.valueOf(table1.getValueAt(rowNo,0))) ;
                 String sql = "DELETE FROM product WHERE ID = ?";
                 String sql2 = "DELETE FROM stock WHERE pid = ?";
-                Connection conn = ConnectionHandler.getConnection();
+                Connection conn = ConnectionHandler1.getConnection();
 
                 try {
                     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class Boss_ProductShow extends JFrame {
                     pstmt.execute();
                     JOptionPane.showMessageDialog(contentPane, "É¾³ý³É¹¦£¡");
                     pstmt.close();
-                    ConnectionHandler.closeConnection();
+                    ConnectionHandler1.closeConnection();
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -170,7 +170,7 @@ public class Boss_ProductShow extends JFrame {
                 "WHERE p.ID = s.pid";
         ResultSet rs = null;
         try {
-            conn = ConnectionHandler.getConnection();
+            conn = ConnectionHandler1.getConnection();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -188,7 +188,7 @@ public class Boss_ProductShow extends JFrame {
             try {
                 rs.close();
                 stmt.close();
-                ConnectionHandler.closeConnection();
+                ConnectionHandler1.closeConnection();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

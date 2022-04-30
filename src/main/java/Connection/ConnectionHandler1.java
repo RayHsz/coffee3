@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class ConnectionHandler {
+public class ConnectionHandler1 {
 
     public static ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
     public static Connection getConnection(){

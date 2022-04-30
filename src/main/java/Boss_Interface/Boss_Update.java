@@ -5,13 +5,12 @@
 package Boss_Interface;
 
 import bean.Product;
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
 
@@ -124,7 +123,7 @@ public class Boss_Update extends JFrame {
 
                 String sql = "UPDATE product SET name = ?,price = ?,cates = ? WHERE ID = ?";
                 String sql2 = "UPDATE stock SET stock = ? WHERE pid = ?";
-                Connection conn = ConnectionHandler.getConnection();
+                Connection conn = ConnectionHandler1.getConnection();
                 try {
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setString(1,name);
@@ -140,7 +139,7 @@ public class Boss_Update extends JFrame {
                     pstmt.execute();
 
                     pstmt.close();
-                    ConnectionHandler.closeConnection();
+                    ConnectionHandler1.closeConnection();
                     JOptionPane.showMessageDialog(contentPane, "ÐÞ¸Ä³É¹¦£¡");
                     dispose();
                 } catch (SQLException throwables) {

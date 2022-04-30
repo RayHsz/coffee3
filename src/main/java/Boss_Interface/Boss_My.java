@@ -4,7 +4,7 @@
 
 package Boss_Interface;
 
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -100,7 +100,7 @@ public class Boss_My extends JFrame {
                     JOptionPane.showMessageDialog(contentPane, "前后两次的密码不一致！");
                     return;
                 }
-                Connection conn = ConnectionHandler.getConnection();
+                Connection conn = ConnectionHandler1.getConnection();
                 String sql = "SELECT * FROM boss WHERE name = ? and password = ? ";
                 try {
                     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -117,7 +117,7 @@ public class Boss_My extends JFrame {
                         pstmt.setString(1,newPassWord);
                         pstmt.execute();
                         JOptionPane.showMessageDialog(contentPane, "密码修改成功！");
-                        ConnectionHandler.closeConnection();
+                        ConnectionHandler1.closeConnection();
                         pstmt.close();
                         dispose();
                         new Boss_Main();

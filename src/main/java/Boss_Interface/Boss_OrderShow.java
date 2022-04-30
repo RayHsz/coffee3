@@ -4,7 +4,7 @@
 
 package Boss_Interface;
 
-import Connection.ConnectionHandler;
+import Connection.ConnectionHandler1;
 import bean.Order;
 
 import java.awt.*;
@@ -74,7 +74,7 @@ public class Boss_OrderShow extends JFrame {
         label4.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 25));
-        Connection conn = ConnectionHandler.getConnection();
+        Connection conn = ConnectionHandler1.getConnection();
         String sql  = "SELECT NAME,MAX(allorder)\n" +
                 "FROM (SELECT p.NAME,SUM(amount) AS allorder\n" +
                 "FROM orders o , product p\n" +
@@ -89,7 +89,7 @@ public class Boss_OrderShow extends JFrame {
             }
             rs.close();
             pstmt.close();
-            ConnectionHandler.closeConnection();
+            ConnectionHandler1.closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -174,7 +174,7 @@ public class Boss_OrderShow extends JFrame {
     }
 
     public Object[][] getDataFromDatabase() {
-        Connection conn = ConnectionHandler.getConnection();
+        Connection conn = ConnectionHandler1.getConnection();
         java.util.List<Order> list = new ArrayList<Order>();
         String sql = "SELECT o.ID,p.NAME,o.item_price,o.amount,o.order_time,o.order_price\n" +
                 "FROM product p , orders o \n" +
@@ -197,7 +197,7 @@ public class Boss_OrderShow extends JFrame {
 
             rs.close();
             pstmt.close();
-            ConnectionHandler.closeConnection();
+            ConnectionHandler1.closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -221,7 +221,7 @@ public class Boss_OrderShow extends JFrame {
         String date = textField1.getText().trim();
         String date1 = date + " 00:00:00";
         String date2 = date + " 23:59:59";
-        Connection conn = ConnectionHandler.getConnection();
+        Connection conn = ConnectionHandler1.getConnection();
         java.util.List<Order> list = new ArrayList<Order>();
         String sql = "SELECT o.ID,p.NAME,o.item_price,o.amount,o.order_time,o.order_price\n" +
                 "FROM product p , orders o \n" +
@@ -246,7 +246,7 @@ public class Boss_OrderShow extends JFrame {
 
             rs.close();
             pstmt.close();
-            ConnectionHandler.closeConnection();
+            ConnectionHandler1.closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
