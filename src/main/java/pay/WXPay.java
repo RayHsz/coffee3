@@ -34,7 +34,7 @@ public class WXPay {
         // 生成二维码，完成支付
          unifiedOrder();
         // 商家扫用户手机的条形码
-        // scanCodeToPay("");
+        scanCodeToPay("");
 
     }
 
@@ -65,7 +65,7 @@ public class WXPay {
         map.put("nonce_str", WXPayUtil.generateNonceStr());
         map.put("out_trade_no", out_trade_no);
         map.put("spbill_create_ip", spbill_create_ip);
-        map.put("total_fee", "1000");
+        map.put("total_fee", String.valueOf((int)Frontdesk_shoppingCar.sumPrice*100));
         //生成签名
         String sign = WXPayUtil.generateSignature(map, config.getKey());
         map.put("sign", sign);
